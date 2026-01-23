@@ -64,7 +64,7 @@ const SignUp = () => {
     <Base>
       <Container>
         <Row className="mt-4">
-          {JSON.stringify(formData)}
+          {/* {JSON.stringify(formData)} */}
           <Card
             className="mx-auto"
             style={{ maxWidth: "400px", width: "100%" }}
