@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import Base from "../components/Base";
 import { useEffect, useState } from "react";
+import { signUp } from "../services/user-service";
 
 const SignUp = () => {
 
@@ -30,16 +31,19 @@ const SignUp = () => {
     isError: false
   });
 
+  // this useEffect will run when formData changes
   // useEffect(() => {
   //   console.log(formData)
   // }, [formData]);
 
   const handleChange=(event, field)=>{
     // console.log("name changed")
+    // this will log the value of the field which is being changed
     // console.log(event.target.value)
     setFormData({...formData,
     [field]: event.target.value
     })
+    // this will log the form data on every change
     // console.log(formData) 
   }
 
@@ -56,8 +60,15 @@ const SignUp = () => {
   const submitForm=(event)=>{
     event.preventDefault();
     // data validate
+
     // call server api to sending the data
-    console.log(formData);
+    signUp(formData).then((response)=>{
+    console.log(response);
+    console.log("success log");
+    }).catch((error)=>{
+      console.log(error);
+      console.log("error log");
+    } )
   }
 
   return (
