@@ -13,6 +13,7 @@ import {
 import Base from "../components/Base";
 import { useEffect, useState } from "react";
 import { signUp } from "../services/user-service";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
 
@@ -65,6 +66,8 @@ const SignUp = () => {
     signUp(formData).then((response)=>{
     console.log(response);
     console.log("success log");
+    toast.success("User is registered successfully!!");
+    resetData();
     }).catch((error)=>{
       console.log(error);
       console.log("error log");
