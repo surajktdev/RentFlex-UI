@@ -24,7 +24,6 @@ const SignUp = () => {
     email: "",
     password: "",
     role: "CUSTOMER",
-    status: "ACTIVE",
   })
 
   const [error, setError] = useState({
@@ -54,7 +53,6 @@ const SignUp = () => {
       email: "",
       password: "",
       role: "CUSTOMER",
-      status: "ACTIVE",
     })
   }
 
@@ -126,17 +124,6 @@ const SignUp = () => {
                     <option>ADMIN</option>
                     <option>VENDOR</option>
                     <option>CUSTOMER</option>
-                  </Input>
-                </FormGroup>
-                <FormGroup>
-                  <Label for="status">Status</Label>
-                  <Input id="status" name="select" type="select"
-                  onChange={(e)=> handleChange(e, 'status')}
-                  value={formData.status}
-                  >
-                    <option>ACTIVE</option>
-                    <option>SUSPENDED</option>
-                    <option>DEACTIVATED</option>
                   </Input>
                 </FormGroup>
                 <Container className="text-center">
