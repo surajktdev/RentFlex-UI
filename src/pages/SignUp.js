@@ -9,6 +9,7 @@ import {
   Input,
   Button,
   Row,
+  FormFeedback,
 } from "reactstrap";
 import Base from "../components/Base";
 import { useEffect, useState } from "react";
@@ -20,14 +21,14 @@ const SignUp = () => {
   
 
   const [formData, setFormData] = useState({
-    name: "",
+    userName: "",
     email: "",
     password: "",
     role: "CUSTOMER",
   })
 
   const [error, setError] = useState({
-    error: {},
+    errors: {},
     isError: false
   });
 
@@ -49,7 +50,7 @@ const SignUp = () => {
 
   const resetData=()=>{
     setFormData({
-      name: "",
+      userName: "",
       email: "",
       password: "",
       role: "CUSTOMER",
@@ -58,19 +59,30 @@ const SignUp = () => {
 
   const submitForm=(event)=>{
     event.preventDefault();
-    // data validate
 
-    // call server api to sending the data
-    signUp(formData).then((response)=>{
-    console.log(response);
-    console.log("success log");
-    toast.success("User is registered successfully!!");
-    resetData();
-    }).catch((error)=>{
-      console.log(error);
-      console.log("error log");
-    } )
-  }
+    signUp(formData)
+      .then((response) => {
+        console.log("Success response:", response.data);
+        toast.success("User registered successfully!");
+        resetData();
+      })
+      .catch((err) => {
+        console.log("Full error:", err);
+
+        if (err.response) {
+          console.log("Server error data:", err.response.data);
+        }
+
+        setError({
+          errors: err,
+          isError: true,
+        });
+
+        toast.error(
+          err.response?.data?.message || "Registration failed! Please provide valid details."
+        );
+      });
+  };
 
   return (
     <Base>
@@ -87,13 +99,17 @@ const SignUp = () => {
             <CardBody>
               <Form onSubmit={submitForm}>
                 <FormGroup>
-                  <Label for="name">Name</Label>
+                  <Label for="userName">Name</Label>
                   <Input type="text" 
-                  id="name" 
+                  id="userName" 
                   placeholder="Enter your name" 
-                  onChange={(e)=> handleChange(e, 'name')}
-                  value={formData.name}
+                  onChange={(e)=> handleChange(e, 'userName')}
+                  value={formData.userName}
+                  invalid={!!error.errors?.response?.data?.userName}
                   />
+                  <FormFeedback>
+                    {error.errors?.response?.data?.userName}
+                  </FormFeedback>
                 </FormGroup>
                 <FormGroup>
                   <Label for="email">Email</Label>
@@ -103,7 +119,11 @@ const SignUp = () => {
                     placeholder="Enter your email"
                     onChange={(e)=> handleChange(e, 'email')}
                     value={formData.email}
+                    invalid={!!error.errors?.response?.data?.email}
                   />
+                  <FormFeedback>
+                    {error.errors?.response?.data?.email}
+                  </FormFeedback>
                 </FormGroup>
                 <FormGroup>
                   <Label for="password">Password</Label>
@@ -113,7 +133,11 @@ const SignUp = () => {
                     placeholder="Enter your password"
                     onChange={(e)=> handleChange(e, 'password')}
                     value={formData.password}
+                    invalid={!!error.errors?.response?.data?.password}
                   />
+                  <FormFeedback>
+                    {error.errors?.response?.data?.password}
+                  </FormFeedback>
                 </FormGroup>
                 <FormGroup>
                   <Label for="role">Role</Label>
