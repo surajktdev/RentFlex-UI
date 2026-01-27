@@ -17,19 +17,16 @@ import { signUp } from "../services/user-service";
 import { toast } from "react-toastify";
 
 const SignUp = () => {
-
-  
-
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
     password: "",
     role: "CUSTOMER",
-  })
+  });
 
   const [error, setError] = useState({
     errors: {},
-    isError: false
+    isError: false,
   });
 
   // this useEffect will run when formData changes
@@ -37,27 +34,25 @@ const SignUp = () => {
   //   console.log(formData)
   // }, [formData]);
 
-  const handleChange=(event, field)=>{
+  const handleChange = (event, field) => {
     // console.log("name changed")
     // this will log the value of the field which is being changed
     // console.log(event.target.value)
-    setFormData({...formData,
-    [field]: event.target.value
-    })
+    setFormData({ ...formData, [field]: event.target.value });
     // this will log the form data on every change
-    // console.log(formData) 
-  }
+    // console.log(formData)
+  };
 
-  const resetData=()=>{
+  const resetData = () => {
     setFormData({
       userName: "",
       email: "",
       password: "",
       role: "CUSTOMER",
-    })
-  }
+    });
+  };
 
-  const submitForm=(event)=>{
+  const submitForm = (event) => {
     event.preventDefault();
 
     signUp(formData)
@@ -79,7 +74,8 @@ const SignUp = () => {
         });
 
         toast.error(
-          err.response?.data?.message || "Registration failed! Please provide valid details."
+          err.response?.data?.message ||
+            "Registration failed! Please provide valid details.",
         );
       });
   };
@@ -100,12 +96,13 @@ const SignUp = () => {
               <Form onSubmit={submitForm}>
                 <FormGroup>
                   <Label for="userName">Name</Label>
-                  <Input type="text" 
-                  id="userName" 
-                  placeholder="Enter your name" 
-                  onChange={(e)=> handleChange(e, 'userName')}
-                  value={formData.userName}
-                  invalid={!!error.errors?.response?.data?.userName}
+                  <Input
+                    type="text"
+                    id="userName"
+                    placeholder="Enter your name"
+                    onChange={(e) => handleChange(e, "userName")}
+                    value={formData.userName}
+                    invalid={!!error.errors?.response?.data?.userName}
                   />
                   <FormFeedback>
                     {error.errors?.response?.data?.userName}
@@ -117,7 +114,7 @@ const SignUp = () => {
                     type="email"
                     id="email"
                     placeholder="Enter your email"
-                    onChange={(e)=> handleChange(e, 'email')}
+                    onChange={(e) => handleChange(e, "email")}
                     value={formData.email}
                     invalid={!!error.errors?.response?.data?.email}
                   />
@@ -131,7 +128,7 @@ const SignUp = () => {
                     type="password"
                     id="password"
                     placeholder="Enter your password"
-                    onChange={(e)=> handleChange(e, 'password')}
+                    onChange={(e) => handleChange(e, "password")}
                     value={formData.password}
                     invalid={!!error.errors?.response?.data?.password}
                   />
@@ -141,9 +138,12 @@ const SignUp = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for="role">Role</Label>
-                  <Input id="role" name="select" type="select"
-                  onChange={(e)=> handleChange(e, 'role')}
-                  value={formData.role}
+                  <Input
+                    id="role"
+                    name="select"
+                    type="select"
+                    onChange={(e) => handleChange(e, "role")}
+                    value={formData.role}
                   >
                     <option>ADMIN</option>
                     <option>VENDOR</option>
@@ -151,8 +151,14 @@ const SignUp = () => {
                   </Input>
                 </FormGroup>
                 <Container className="text-center">
-                  <Button outline color="dark">Sign Up</Button>
-                  <Button onClick={resetData} color="secondary" className="ms-2">
+                  <Button outline color="dark">
+                    Sign Up
+                  </Button>
+                  <Button
+                    onClick={resetData}
+                    color="secondary"
+                    className="ms-2"
+                  >
                     Reset
                   </Button>
                 </Container>
