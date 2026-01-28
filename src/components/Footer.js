@@ -1,54 +1,69 @@
+import { Link as ReactLink } from "react-router-dom";
+
 const Footer = () => {
-  return (
-    <footer className="bg-dark text-light mt-5 pt-5">
+
+return (
+  <footer className="mt-5">
+
+    {/* Highlight Strip */}
+    <div className="bg-primary text-white text-center py-3">
+      <strong>RentFlex</strong> — Smart rentals made simple
+    </div>
+
+    {/* Main Footer */}
+    <div className="bg-dark text-light py-5">
       <div className="container">
-        {/* Top Section */}
-        <div className="row text-center text-md-start align-items-start">
-          {/* Brand */}
-          <div className="col-md-4 mb-4">
-            <h5 className="fw-bold d-flex align-items-center justify-content-center justify-content-md-start">
-              🚀 RentFlex
-            </h5>
-            <p className="text-secondary mt-2">
-              A modern multi-vendor rental platform designed for seamless
-              booking and scalable management.
+
+        <div className="row gy-4">
+
+          {/* About */}
+          <div className="col-md-4">
+            <h5 className="fw-bold mb-3">🚀 RentFlex</h5>
+            <p className="text-secondary small">
+              RentFlex is a scalable multi-vendor rental platform built to
+              simplify bookings, manage inventory, and grow your rental business.
             </p>
           </div>
 
           {/* Navigation */}
-          <div className="col-md-4 mb-4">
-            <h6 className="fw-semibold text-light">Explore</h6>
-            <ul className="list-unstyled mt-3">
+          <div className="col-md-4">
+            <h6 className="fw-semibold mb-3">Navigation</h6>
+            <ul className="list-unstyled small">
               <li className="mb-2">
-                <a href="/" className="footer-link">
+                <ReactLink to="/" className="text-secondary text-decoration-none footer-link">
                   Home
-                </a>
+                </ReactLink>
               </li>
               <li className="mb-2">
-                <a href="/about" className="footer-link">
+                <ReactLink to="/about" className="text-secondary text-decoration-none footer-link">
                   About
-                </a>
+                </ReactLink>
               </li>
               <li className="mb-2">
-                <a href="/login" className="footer-link">
+                <ReactLink to="/login" className="text-secondary text-decoration-none footer-link">
                   Login
-                </a>
+                </ReactLink>
               </li>
             </ul>
           </div>
 
-          {/* Info */}
-          <div className="col-md-4 mb-4">
-            <h6 className="fw-semibold text-light">Get in Touch</h6>
-            <p className="text-secondary mt-3 mb-1">📧 support@rentflex.com</p>
-            <p className="text-secondary">📍 India</p>
+          {/* Support */}
+          <div className="col-md-4">
+            <h6 className="fw-semibold mb-3">Support</h6>
+            <p className="text-secondary small mb-2">
+              📧 support@rentflex.com
+            </p>
+            <p className="text-secondary small mb-0">
+              📍 India
+            </p>
           </div>
+
         </div>
 
-        <hr className="border-secondary mt-4" />
+        <hr className="border-secondary my-4" />
 
         {/* Bottom */}
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
           <small className="text-secondary">
             © {new Date().getFullYear()} RentFlex. All rights reserved.
           </small>
@@ -57,9 +72,12 @@ const Footer = () => {
             Built with ❤️ using Spring Boot & React
           </small>
         </div>
+
       </div>
-    </footer>
-  );
+    </div>
+  </footer>
+);
+
 };
 
 export default Footer;
