@@ -20,24 +20,24 @@ const CustomNavbar = () => {
   const [user, setUser] = useState(undefined);
 
   useEffect(() => {
-  const loggedIn = isLoggedIn();
-  const userDetails = getCurrentUserDetails();
+    const loggedIn = isLoggedIn();
+    const userDetails = getCurrentUserDetails();
 
-  console.log("Logged In:", loggedIn);
-  console.log("User:", userDetails);
+    console.log("Logged In:", loggedIn);
+    console.log("User:", userDetails);
 
-  setLoginStatus(loggedIn);
-  setUser(userDetails);
-}, []);
+    setLoginStatus(loggedIn);
+    setUser(userDetails);
+  }, []);
 
- const logout = () => {
-  doLogout(() => {
-    console.log("User logged out successfully");
-    setLoginStatus(false);
-    setUser(undefined);
-    window.location.href = "/";
-  });
- }
+  const logout = () => {
+    doLogout(() => {
+      console.log("User logged out successfully");
+      setLoginStatus(false);
+      setUser(undefined);
+      window.location.href = "/";
+    });
+  };
   return (
     <Navbar
       color="dark"

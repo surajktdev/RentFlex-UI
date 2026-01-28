@@ -6,19 +6,19 @@ export const isLoggedIn = () => {
   } else {
     return true;
   }
-}
+};
 
 // login function to store the token in local storage
 export const doLogin = (data, next) => {
   localStorage.setItem("user", JSON.stringify(data));
   next();
-}
+};
 
 // logout function to remove the token from local storage
 export const doLogout = (next) => {
   localStorage.removeItem("user");
   next();
-}
+};
 
 // get the logged in user details
 export const getCurrentUserDetails = () => {
@@ -27,4 +27,3 @@ export const getCurrentUserDetails = () => {
   const user = localStorage.getItem("user");
   return user ? JSON.parse(user) : null;
 };
-

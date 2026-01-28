@@ -10,4 +10,4 @@ export const login = (credentials) => {
   return myAxios
     .post("/auth/v1/login", credentials)
     .then((response) => response.data);
-}
+};

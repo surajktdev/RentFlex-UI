@@ -16,7 +16,6 @@ import { toast } from "react-toastify";
 import { login } from "../services/user-service";
 import { doLogin } from "../auth/index";
 
-
 const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
@@ -55,11 +54,8 @@ const Login = () => {
           console.log("Login detail saved to local storage");
           // redirect to user dashboard page
           window.location.href = "/user/dashboard";
-
         });
         toast.success("Login Successful !!");
-
-
       })
       .catch((error) => {
         console.log(error);
